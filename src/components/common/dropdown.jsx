@@ -1,12 +1,14 @@
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import Caret from "./caret";
+import Link from "next/link";
 
 export default function Dropdown({
   label = "Select option",
   items = [],
   value: controlledValue,
   onChange,
+  isLink,
   placeholder = "Select...",
   className = "w-64",
   triggerClassName,
@@ -106,11 +108,7 @@ export default function Dropdown({
           triggerClassName
         )}
       >
-        <span
-          className={`truncate text-gray-700`}
-        >
-          {displayLabel()}
-        </span>
+        <span className={`truncate text-gray-700`}>{displayLabel()}</span>
         <Caret open={open} />
       </button>
 
@@ -130,7 +128,44 @@ export default function Dropdown({
           {items.map((item, idx) => {
             const isSelected = item.value === value;
             const isHighlighted = idx === highlightIndex;
-            return (
+            return isLink ? (
+              <Link
+                href={item.value}
+                key={String(item.value) + idx}
+                className={`cursor-pointer select-none px-3 py-2 text-sm flex items-center gap-2 ${
+                  item.disabled
+                    ? "text-gray-300 cursor-not-allowed"
+                    : isHighlighted
+                    ? "bg-indigo-50 text-gray-700"
+                    : "text-gray-700 hover:bg-gray-50"
+                }`}
+              >
+                <span
+                  className={`flex-1 truncate ${
+                    isSelected ? "font-medium" : ""
+                  }`}
+                >
+                  {item.label}
+                </span>
+                {isSelected && (
+                  <svg
+                    className="w-4 h-4"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden
+                  >
+                    <path
+                      d="M5 10l3 3 7-7"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                )}
+              </Link>
+            ) : (
               <li
                 key={String(item.value) + idx}
                 role="option"

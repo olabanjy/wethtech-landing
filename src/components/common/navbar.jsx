@@ -13,7 +13,7 @@ const links = [
   {
     href: "https://wethtax.com/",
     label: "Products",
-    subLinks: [{ label: "Wethax", href: "https://wethtax.com/" }],
+    subLinks: [{ label: "Wethax", value: "https://wethtax.com/" }],
   },
   {
     href: "/",
@@ -45,10 +45,10 @@ const Navbar = () => {
         {links.map((link) =>
           link.subLinks?.length > 0 ? (
             <Dropdown
+              isLink
               className="w-auto"
               placeholder="Products"
               items={link?.subLinks ?? []}
-              onChange={(value) => Router.push(value)}
               triggerClassName="bg-transparent border-none rounded-none h-fit py-0 shadow-none text-gray-700 w-fit"
             />
           ) : (
@@ -102,7 +102,9 @@ const Navbar = () => {
                       <ul className="px-6 py-3">
                         {link.subLinks.map((subLink) => (
                           <li key={subLink.label}>
-                            <Link href={subLink.href} className="py-1.5">{subLink.label}</Link>
+                            <Link href={subLink.href} className="py-1.5">
+                              {subLink.label}
+                            </Link>
                           </li>
                         ))}
                       </ul>
