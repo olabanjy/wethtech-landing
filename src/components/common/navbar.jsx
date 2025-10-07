@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Image from "./image";
 import Link from "next/link";
+import Dropdown from "./dropdown";
+import Router from "next/router";
+import Caret from "./caret";
 
 const links = [
   {
@@ -10,6 +13,7 @@ const links = [
   {
     href: "https://wethtax.com/",
     label: "Products",
+    subLinks: [{ label: "Wethax", href: "https://wethtax.com/" }],
   },
   {
     href: "/",
@@ -27,6 +31,7 @@ const links = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [openProducts, setOpenProducts] = useState(false);
 
   return (
     <nav className="px-6 md:px-3 py-7 border-b border-gray-100 flex justify-between items-center">
@@ -37,11 +42,21 @@ const Navbar = () => {
         imgClassName="object-contain"
       />
       <div className="hidden lg:flex gap-7">
-        {links.map((link) => (
-          <Link key={link.label} href={link.href} className="text-gray-700">
-            {link.label}
-          </Link>
-        ))}
+        {links.map((link) =>
+          link.subLinks?.length > 0 ? (
+            <Dropdown
+              className="w-auto"
+              placeholder="Products"
+              items={link?.subLinks ?? []}
+              onChange={(value) => Router.push(value)}
+              triggerClassName="bg-transparent border-none rounded-none h-fit py-0 shadow-none text-gray-700 w-fit"
+            />
+          ) : (
+            <Link key={link.label} href={link.href} className="text-gray-700">
+              {link.label}
+            </Link>
+          )
+        )}
       </div>
       {/* <div className="hidden lg:flex">
         <Link href="/" className="text-sm px-6 py-2">
@@ -74,15 +89,35 @@ const Navbar = () => {
               imgClassName="object-contain"
             />
             <div className="flex flex-col">
-              {links.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="text-gray-700 text-lg py-2.5 px-2"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {links.map((link) =>
+                link.subLinks?.length > 0 ? (
+                  <div>
+                    <p
+                      className="text-gray-700 flex items-center gap-2 text-lg py-2.5 px-2"
+                      onClick={() => setOpenProducts(!openProducts)}
+                    >
+                      {link.label} <Caret open={openProducts} />
+                    </p>
+                    {openProducts && (
+                      <ul className="px-6 py-3">
+                        {link.subLinks.map((subLink) => (
+                          <li key={subLink.label}>
+                            <Link href={subLink.href} className="py-1.5">{subLink.label}</Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="text-gray-700 text-lg py-2.5 px-2"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
             </div>
             {/* <div className="flex gap-2 mt-12">
               <Link
