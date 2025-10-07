@@ -34,6 +34,7 @@ const Navbar = () => {
         src="/logo.svg"
         alt="Logo"
         className="w-[13.3125rem] h-7 lg:w-[14.625rem] lg:h-[1.875rem]"
+        imgClassName="object-contain"
       />
       <div className="hidden lg:flex gap-7">
         {links.map((link) => (
