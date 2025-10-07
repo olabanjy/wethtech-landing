@@ -9,7 +9,7 @@ const Image = ({ src, alt, className, imgClassName }) => {
         src={src}
         alt={alt}
         fill
-        className={cn("object-cover lg:object-none", imgClassName)}
+        className={cn("object-cover lg:object-contain", imgClassName)}
       />
     </div>
   );
