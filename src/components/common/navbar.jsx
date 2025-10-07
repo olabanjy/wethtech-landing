@@ -8,7 +8,7 @@ const links = [
     label: "e-Invoice App",
   },
   {
-    href: "/",
+    href: "https://wethtax.com/",
     label: "Products",
   },
   {
@@ -71,6 +71,7 @@ const Navbar = () => {
               src="/logo.svg"
               alt="Logo"
               className="w-[13.3125rem] h-7 lg:w-[14.625rem] lg:h-[1.875rem] mt-5 mb-10"
+              imgClassName="object-contain"
             />
             <div className="flex flex-col">
               {links.map((link) => (
