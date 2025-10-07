@@ -22,7 +22,7 @@ const HomeService = () => {
   ];
 
   return (
-    <section className="py-16 lg:py-32 mx-automax-w-[58rem] px-2.5">
+    <section className="py-16 lg:py-32 mx-auto max-w-[58rem] px-2.5">
       <div className="text-center mb-10 max-w-[23.4rem] lg:max-w-full mx-auto">
         <h4 className="text-gray-900 text-3xl lg:text-[2.75rem] mb-7 lg:mb-4">
           Holistic platform for all finance management
