@@ -42,7 +42,7 @@ const Navbar = () => {
           </Link>
         ))}
       </div>
-      <div className="hidden lg:flex">
+      {/* <div className="hidden lg:flex">
         <Link href="/" className="text-sm px-6 py-2">
           Login
         </Link>
@@ -52,7 +52,7 @@ const Navbar = () => {
         >
           Get Started
         </Link>
-      </div>
+      </div> */}
       <button onClick={() => setOpen(!open)} className="lg:hidden">
         <Image src="/menu.svg" alt="Menu" className="w-7 h-7" />
       </button>
@@ -82,7 +82,7 @@ const Navbar = () => {
                 </Link>
               ))}
             </div>
-            <div className="flex gap-2 mt-12">
+            {/* <div className="flex gap-2 mt-12">
               <Link
                 href="/"
                 className="text-sm px-6 py-2 border border-gray-900 rounded-lg"
@@ -95,7 +95,7 @@ const Navbar = () => {
               >
                 Get Started
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       )}
