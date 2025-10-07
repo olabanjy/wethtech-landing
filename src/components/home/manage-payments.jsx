@@ -18,25 +18,25 @@ const ManagePayments = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-100">
+    <section className="py-16 lg:py-20 bg-gray-100 px-8">
       <div className="max-w-[46.625rem] mx-auto mb-10">
         <div className="text-center mx-auto max-w-[41.5rem]">
-          <h4 className="text-4xl font-mediumm mb-4">
+          <h4 className="text-3xl lg:text-4xl font-mediumm mb-4">
             Manage payments effortlessly
           </h4>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 lg:text-lg">
             Wethtechnologies is a purpose-built finance management platform -
             bringing customer-like speed, choice and convenience to the world of
             business.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-5 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-5 mt-10">
           {payments.map((payment, index) => (
-            <div key={index}>
+            <div key={index} className="text-center md:text-left flex flex-col items-center md:items-start">
               <Image
                 src={payment.icon}
                 alt={payment.title}
-                className="h-[18.75rem]"
+                className="h-[18.75rem] w-full"
               />
               <h4 className="mt-8 text-xl mb-3 font-medium text-gray-900">
                 {payment.title}
